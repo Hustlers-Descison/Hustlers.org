@@ -4,6 +4,7 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 // import { Footer } from '../components/Footer';
 // import styled from 'styled-components';
 // import Admin from '../components/Admin';
+import Header from '../components/Header';
 import Users from '../components/Users';
 import Splash from '../components/Splash';
 
@@ -38,6 +39,10 @@ export default createBrowserRouter([
             // }
             {
                 index: true,
+                element: <Header />
+            },
+            {
+                path: 'users',
                 element: <Users />
             }
         ]
