@@ -6,7 +6,7 @@ const HeaderSearch = styled.div`
 flex: 0.4;
 opacity: 1;
 border-radius: 6px;
-background-color: #421f44;
+background-color: #4b6584;
 text-align:center;
 display:flex;
 padding: 0 50px;
@@ -76,7 +76,9 @@ export default function Header(){
                 <h1>Hustlers</h1>
                 </HeaderAvatar>
             </HeaderLeft>
-        
+            <HeaderSearch>
+                <input placeholder='search' />
+            </HeaderSearch>
         </HeaderContainer>
       </>
     )
