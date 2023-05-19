@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { Avatar } from 'material-ui/core';
-
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import SearchIcon from '@mui/icons-material/Search';
+import  ContactSupportIcon  from '@mui/icons-material/ContactSupport';
 const HeaderSearch = styled.div`
 flex: 0.4;
 opacity: 1;
 border-radius: 6px;
-background-color: #4b6584;
+background-color: #f19066;
 text-align:center;
 display:flex;
 padding: 0 50px;
@@ -25,6 +27,7 @@ border: 1px gray solid;
 const HeaderContainer = styled.div`
 display:flex;
 position:fixed;
+top: 0;
 width:100%;
 align-items:center;
 justify-content: space-between;
@@ -55,13 +58,7 @@ align-items:flex-end;
 }
 `;
 
-// const HeaderAvatar = styled(Avatar)`
-// cursor:pointer;
-// :hover{
-//     opacity: 0.8;
-// }
-// `;
-const HeaderAvatar = styled.span`
+const HeaderAvatar = styled(PersonPinIcon)`
 cursor:pointer;
 :hover{
     opacity: 0.8;
@@ -72,13 +69,17 @@ export default function Header(){
       <>
         <HeaderContainer>
             <HeaderLeft>
-                <HeaderAvatar>
-                <h1>Hustlers</h1>
-                </HeaderAvatar>
+                <HeaderAvatar />
+
+                <AccessTimeIcon />
             </HeaderLeft>
             <HeaderSearch>
+                <SearchIcon />
                 <input placeholder='search' />
             </HeaderSearch>
+            <HeaderRight>
+                <ContactSupportIcon />
+            </HeaderRight>
         </HeaderContainer>
       </>
     )
