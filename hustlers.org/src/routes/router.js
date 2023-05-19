@@ -2,12 +2,18 @@ import React from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 // import Sidebar from '../components/Sidebar';
 // import { Footer } from '../components/Footer';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 // import Admin from '../components/Admin';
-import Header from '../components/Header';
-import Users from '../components/Users';
+// import Header from '../components/Header';
+import Chat from '../components/Chat';
 import Splash from '../components/Splash';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
+const AppBody = styled.div`
+    display: flex;
+    height: 100vh;
+`
 // const Loader = styled.div`
 
 // `;
@@ -15,11 +21,14 @@ import Splash from '../components/Splash';
 function Layout(){
     return(
         <>
-            {/* <Sidebar /> */}
-            {/* <React.Suspense fallback={<Splash active fullscreen={true} />}> */}
+            <Header />
+            <AppBody>
+            <Sidebar />
+            </AppBody>
                 <React.Suspense fallback={<Splash active fullscreen={true} />}>
-                <Outlet />
+                    <Outlet />
                 </React.Suspense>
+
             {/* <Footer /> */}
         </>
     )
@@ -39,12 +48,12 @@ export default createBrowserRouter([
             // }
             {
                 index: true,
-                element: <Header />
+                element: <Chat />
             },
-            {
-                path: 'users',
-                element: <Users />
-            }
+            // {
+            //     path: 'chat',
+            //     element: <Chat />
+            // }
         ]
     }
 

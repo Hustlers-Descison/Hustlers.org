@@ -1,10 +1,10 @@
 import React from 'react';
 // import styled from 'styled-components';
 
-export default function Users(){
+export default function Chat(){
     return(
      <>
-     <div><h1>Hustlers</h1></div>
+     <div></div>
      </>
     )
 }
