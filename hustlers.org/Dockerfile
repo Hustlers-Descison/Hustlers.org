@@ -3,6 +3,6 @@
 FROM node:18-alpine
 WORKDIR /hustlers.org
 COPY . .
-RUN yarn install --prod --network-timeout 300000
-CMD ["node", "src/index.js"]
+RUN npm install
+CMD ["npm", "start"]
 EXPOSE 3000
