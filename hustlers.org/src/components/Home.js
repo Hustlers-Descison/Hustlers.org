@@ -19,6 +19,7 @@ export default function Home(){
             const { data, error } = await supabase
             .from('smoothies')
             .select()
+            .order(orderBy, {ascending: false})
 
             if(error){
                 setFetchError('Could not get information')
@@ -31,7 +32,7 @@ export default function Home(){
             }
         }
         fetchSmoothies();
-    }, [])
+    }, [orderBy])
     // console.log(supabase);
     return(
      <>
