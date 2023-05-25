@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import supabase from '../db/supabaseClient';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
+const BodyWrapper = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    margin: 70px;
+`
 export default function Admin(){
     const navigate = useNavigate('');
     const [userLog, setUserLog] = useState('');
@@ -33,6 +38,7 @@ export default function Admin(){
 
     return(
      <>
+     <BodyWrapper>
      <div className='page admin'>
      <form onSubmit={handleSubmit}>
 
@@ -54,6 +60,7 @@ export default function Admin(){
         <button>Login</button>
         {formError && <p className="error">{formError}</p>}
      </div>
+      </BodyWrapper>
      </>
     )
 }
