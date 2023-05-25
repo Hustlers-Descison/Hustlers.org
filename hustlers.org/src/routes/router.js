@@ -1,35 +1,27 @@
 import React from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-// import Sidebar from '../components/Sidebar';
-// import { Footer } from '../components/Footer';
+import Directory from '../components/Directory';
 import styled from 'styled-components';
-// import Admin from '../components/Admin';
-// import Header from '../components/Header';
-import Chat from '../components/Chat';
-import Splash from '../components/Splash';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import Create from '../components/Create';
+import Home from '../components/Home';
+import Update from '../components/Update';
+import Admin from '../components/Admin';
 
-const AppBody = styled.div`
-    display: flex;
-    height: 100vh;
+const AppBody =styled.div`
+display: flex;
+height: 100vh;
 `
-// const Loader = styled.div`
-
-// `;
 
 function Layout(){
     return(
         <>
-            <Header />
-            <AppBody>
-            <Sidebar />
-            </AppBody>
-                <React.Suspense fallback={<Splash active fullscreen={true} />}>
-                    <Outlet />
-                </React.Suspense>
+        <Directory/>
+        <AppBody>
+            <React.Suspense fallback={<Admin active fullscreen={true} />}>
+                <Outlet />
+            </React.Suspense>
 
-            {/* <Footer /> */}
+        </AppBody>
         </>
     )
 }
@@ -38,23 +30,23 @@ export default createBrowserRouter([
         path: '/',
         element:<Layout />,
         children: [
-            // {
-            //     index: true,
-            //     element: <Admin />
-            // },
-            // {
-            //     path: 'users',
-            //     element: <Users />
-            // }
             {
                 index: true,
-                element: <Chat />
+                element:<Home />
             },
-            // {
-            //     path: 'chat',
-            //     element: <Chat />
-            // }
+            {
+                path: 'home',
+                element: <Home />
+            },
+            {
+                path: 'create',
+                element: <Create />
+            },
+            {
+                path: '/:id',
+                element: <Update />
+            }
         ]
     }
+])
 
-]);
