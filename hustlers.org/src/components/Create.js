@@ -58,7 +58,7 @@ export default function Create(){
             value={rating}
             onChange={(e) => setRating(e.target.value)}
         />
-        <button>Create Smoothie Recipe</button>
+        <button>Create Message</button>
         {formError && <p className="error">{formError}</p>}
         </form>
      </div>
