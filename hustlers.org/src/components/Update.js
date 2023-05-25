@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import  supabase  from '../db/supabaseClient';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
+const BodyWrapper = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    margin: 70px;
+`
 export default function Update(){
     const { id } = useParams();
     // console.log(update);
@@ -55,6 +60,7 @@ export default function Update(){
     },[id, navigate])
     return(
      <>
+     <BodyWrapper>
      <div className='page update'>
      <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
@@ -83,6 +89,7 @@ export default function Update(){
         {formError && <p className="error">{formError}</p>}
         </form>
      </div>
+      </BodyWrapper>
      </>
     )
 }
