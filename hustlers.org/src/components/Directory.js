@@ -32,7 +32,7 @@ export default function Directory(){
         <Container>
         <NavBar>
             <NavLink to={'/'}>
-
+            <span>Admin</span>
             </NavLink>
             <NavLink to={'home'} className={ActiveLink}>
                 <span>Chat Log</span>
