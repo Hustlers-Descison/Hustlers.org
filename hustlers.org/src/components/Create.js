@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import supabase  from '../db/supabaseClient';
 
+const BodyWrapper = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    margin: 70px;
+`
 export default function Create(){
     const navigate = useNavigate('');
     const [title, setTitle] = useState('');
@@ -34,6 +39,7 @@ export default function Create(){
     }
     return(
      <>
+     <BodyWrapper>
      <div className='page create'>
         <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
@@ -62,6 +68,7 @@ export default function Create(){
         {formError && <p className="error">{formError}</p>}
         </form>
      </div>
+       </BodyWrapper>
      </>
     )
 }
