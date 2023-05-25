@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-import { supabase } from '../db/supabaseClient';
+import supabase  from '../db/supabaseClient';
 
 export default function Create(){
     const navigate = useNavigate('');

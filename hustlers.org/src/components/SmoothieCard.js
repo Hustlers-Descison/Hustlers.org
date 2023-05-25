@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { supabase } from "../db/supabaseClient";
+import  supabase  from "../db/supabaseClient";
 export default function SmoothieCard ({ smoothie, onDelete }){
 
     const handleDelete = async () =>{

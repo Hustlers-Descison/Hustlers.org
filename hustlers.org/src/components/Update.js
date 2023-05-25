@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { supabase } from '../db/supabaseClient';
+import  supabase  from '../db/supabaseClient';
 // import styled from 'styled-components';
 
 export default function Update(){

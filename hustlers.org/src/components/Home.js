@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../db/supabaseClient';
+import supabase  from '../db/supabaseClient';
 // import styled from 'styled-components';
 import SmoothieCard from './SmoothieCard';
 
