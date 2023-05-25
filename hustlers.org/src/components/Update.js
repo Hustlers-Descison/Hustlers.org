@@ -21,6 +21,7 @@ export default function Update(){
         }
         const { data, error} = await supabase
             .from('smoothies')
+            .update({ title, method, rating })
             .eq('id', id)
             .select()
         if(error){
