@@ -3,23 +3,36 @@ import {NavLink, useMatch } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-// position: fixed;
-// top:0;
-// width: 100%;
-// z-index:100;
-// align-items:center;
-// justify-content: space-between;
-// padding:10px 0;
-// background-color: #000;
-// color:white;
-// // font-family: 'Love Light', cursive;
-// margin-bottom:40px;
+position: fixed;
+top:0;
+width: 100%;
+z-index:100;
+align-items:center;
+justify-content: space-between;
+padding:10px 0;
+background-color: #487eb0;
+color:white;
+// font-family: 'Love Light', cursive;
+
+
+margin-bottom:40px;
 `
 export const NavBar = styled.div`
 display:flex;
 gap:20px;
-.active a{ text-decoration: none}
+padding: 5px 0px 3px;
+margin-right:6px;
+white-space: nowrap;
+a{
+    text-decoration: none;
+    span{
+        text-decoration: none;
+    }
+}
+.active span,
+a: hover{ color: #FFF; text-decoration: none;}
 `;
+
 export default function Directory(){
     
         function ActiveLink({isActive}){
