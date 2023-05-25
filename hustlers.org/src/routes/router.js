@@ -32,7 +32,7 @@ export default createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<Home />
+                element:<Admin />
             },
             {
                 path: 'home',
