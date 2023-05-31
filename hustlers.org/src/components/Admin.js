@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import supabase from '../db/supabaseClient';
 
+
 const UserPortalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Added to center the content vertically */
-  margin: 0 auto ;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
-const LoginForm = styled.form`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,15 +38,20 @@ const ErrorText = styled.p`
 `;
 
 export default function UserPortal() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [formError, setFormError] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const { error } = await supabase.auth.signIn({ email, password });
+      const { error } = await supabase.auth.signIn({
+        email: loginEmail,
+        password: loginPassword,
+      });
 
       if (error) {
         setFormError('Invalid email or password.');
@@ -57,6 +63,27 @@ export default function UserPortal() {
     } catch (error) {
       console.log(error);
       setFormError('An error occurred while logging in.');
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { user, error } = await supabase.auth.signUp({
+        email: registerEmail,
+        password: registerPassword,
+      });
+
+      if (error) {
+        setFormError('An error occurred while registering.');
+      } else {
+        setFormError(null);
+        console.log(user);
+      }
+    } catch (error) {
+      console.log(error);
+      setFormError('An error occurred while registering.');
     }
   };
 
@@ -89,22 +116,41 @@ export default function UserPortal() {
   return (
     <UserPortalWrapper>
       <h2>User Portal</h2>
-      <LoginForm onSubmit={handleLogin}>
+      <FormWrapper onSubmit={handleLogin}>
         <Input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginEmail}
+          onChange={(e) => setLoginEmail(e.target.value)}
         />
         <Input
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>
-        {formError && <ErrorText>{formError}</ErrorText>}
-      </LoginForm>
+      </FormWrapper>
+      <p>Don't have an account yet? Register below.</p>
+      <Button onClick={() => setFormError(null)}>Register</Button>
+      {formError && <ErrorText>{formError}</ErrorText>}
+      {formError !== null && (
+        <FormWrapper onSubmit={handleRegister}>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={registerEmail}
+            onChange={(e) => setRegisterEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={registerPassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
+          />
+          <Button  type="submit">Register</Button>
+        </FormWrapper>
+      )}
     </UserPortalWrapper>
   );
 }
