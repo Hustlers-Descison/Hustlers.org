@@ -33,11 +33,15 @@ export default createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<Login />
+                element:<Admin />
             },
             {
                 path: 'register',
                 element: <Register />
+            },
+            {
+                path: 'login',
+                element: <Login />
             },
             {
                 path: 'home',
