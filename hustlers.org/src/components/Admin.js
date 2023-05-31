@@ -130,7 +130,7 @@ const ErrorText = styled.p`
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>
-//       </FormWrapper>
+      </FormWrapper>
 //       <p>Don't have an account yet? Register below.</p>
 //       <Button onClick={() => setFormError(null)}>Register</Button>
 //       {formError && <ErrorText>{formError}</ErrorText>}
