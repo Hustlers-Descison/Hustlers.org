@@ -93,6 +93,7 @@ export default function Create() {
         setFormError(null);
         setMessage('');
         setMessages([...messages, { userId: user.id, message }]);
+        navigate("/admin");
       }
     } catch (error) {
       console.log(error);
