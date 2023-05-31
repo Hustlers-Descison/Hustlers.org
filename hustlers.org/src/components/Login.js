@@ -1,12 +1,14 @@
-///import React, { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import supabase from '../db/supabaseClient';
+
 
 const UserPortalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
 const LoginForm = styled.form`
@@ -36,15 +38,18 @@ const ErrorText = styled.p`
 `;
 
 export default function UserPortal() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [formError, setFormError] = useState(null);
-
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const { error } = await supabase.auth.signIn({ email, password });
+      const { error } = await supabase.auth.signIn({
+        email: loginEmail,
+        password: loginPassword,
+      });
 
       if (error) {
         setFormError('Invalid email or password.');
@@ -58,54 +63,26 @@ export default function UserPortal() {
       setFormError('An error occurred while logging in.');
     }
   };
-
-  const sendMessage = async () => {
-    try {
-      const user = supabase.auth.user();
-      if (!user) {
-        setFormError('You must be logged in to send a message.');
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from('messages')
-        .insert([{ userId: user.id, message: 'Hello, Supabase!' }])
-        .select();
-
-      if (error) {
-        console.log(error);
-        setFormError('An error occurred while sending the message.');
-      } else {
-        console.log(data);
-        setFormError(null);
-      }
-    } catch (error) {
-      console.log(error);
-      setFormError('An error occurred while sending the message.');
-    }
-  };
-
+  
   return (
     <UserPortalWrapper>
-      <h2>REGISTER YOUR SOUL AWAY MUHHAAHAHA Portal</h2>
+      <h2>User Portal</h2>
       <LoginForm onSubmit={handleLogin}>
         <Input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginEmail}
+          onChange={(e) => setLoginEmail(e.target.value)}
         />
         <Input
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>
-        {formError && <ErrorText>{formError}</ErrorText>}
-      </LoginForm>
+      )}
     </UserPortalWrapper>
   );
-} 
-
-
+  
+  

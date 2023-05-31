@@ -5,21 +5,36 @@ import supabase from '../db/supabaseClient';
 
 const BodyWrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
-  margin: 70px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 `;
 
 const ChatLog = styled.div`
   /* Styles for chat log */
+  margin-top: 10rem;
+`;
+
+const ChatBubble = styled.div`
+  /* Styles for chat bubble */
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  background-color: ${({ isSent }) => (isSent ? 'red' : 'green')};
+  color: white;
 `;
 
 const ChatBox = styled.div`
   /* Styles for chat box */
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
   background-color: #f5f5f5;
   border-radius: 10px;
+  justify-content: center;
 `;
 
 const MessageInput = styled.textarea`
@@ -49,6 +64,7 @@ export default function Create() {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [formError, setFormError] = useState(null);
+  const [messages, setMessages] = useState([]); // Store and display messages
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,6 +92,7 @@ export default function Create() {
         console.log(data);
         setFormError(null);
         setMessage('');
+        setMessages([...messages, { userId: user.id, message }]);
       }
     } catch (error) {
       console.log(error);
@@ -90,7 +107,11 @@ export default function Create() {
       </nav>
       <BodyWrapper>
         <ChatLog>
-          {/* Display messages from multiple users */}
+          {messages.map(({ userId, message }, index) => (
+            <ChatBubble key={index} isSent={userId === supabase.auth.user()?.id}>
+              {message}
+            </ChatBubble>
+          ))}
         </ChatLog>
         <ChatBox>
           <form onSubmit={handleSubmit}>
