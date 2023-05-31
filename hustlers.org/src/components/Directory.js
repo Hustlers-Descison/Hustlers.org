@@ -56,6 +56,12 @@ export default function Directory(){
             <NavLink to={'update'}>
                 <span>Update</span>
             </NavLink>
+            <NavLink to={'login'}>
+                <span>Login</span>
+            </NavLink>
+            <NavLink to={'register'}>
+                <span>Register</span>
+            </NavLink>
         </NavBar>
         </Container>
         </>
