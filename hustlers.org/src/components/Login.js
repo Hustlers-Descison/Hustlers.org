@@ -56,7 +56,7 @@ export default function UserPortal() {
       } else {
         setFormError(null);
         // Successful login, proceed with sending the message
-        await sendMessage();
+//         await sendMessage();
       }
     } catch (error) {
       console.log(error);
