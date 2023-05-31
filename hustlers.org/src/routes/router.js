@@ -7,6 +7,7 @@ import Home from '../components/Home';
 import Update from '../components/Update';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import Admin from '../componentes/Admin':
 
 const AppBody =styled.div`
 display: flex;
