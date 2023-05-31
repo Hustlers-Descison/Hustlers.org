@@ -37,55 +37,55 @@ const ErrorText = styled.p`
   color: red;
 `;
 
-export default function UserPortal() {
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [registerEmail, setRegisterEmail] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [formError, setFormError] = useState(null);
+// export default function UserPortal() {
+//   const [loginEmail, setLoginEmail] = useState('');
+//   const [loginPassword, setLoginPassword] = useState('');
+//   const [registerEmail, setRegisterEmail] = useState('');
+//   const [registerPassword, setRegisterPassword] = useState('');
+//   const [formError, setFormError] = useState(null);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
 
-    try {
-      const { error } = await supabase.auth.signIn({
-        email: loginEmail,
-        password: loginPassword,
-      });
+//     try {
+//       const { error } = await supabase.auth.signIn({
+//         email: loginEmail,
+//         password: loginPassword,
+//       });
 
-      if (error) {
-        setFormError('Invalid email or password.');
-      } else {
-        setFormError(null);
-        // Successful login, proceed with sending the message
-        await sendMessage();
-      }
-    } catch (error) {
-      console.log(error);
-      setFormError('An error occurred while logging in.');
-    }
-  };
+//       if (error) {
+//         setFormError('Invalid email or password.');
+//       } else {
+//         setFormError(null);
+//         // Successful login, proceed with sending the message
+//         await sendMessage();
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       setFormError('An error occurred while logging in.');
+//     }
+//   };
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+//   const handleRegister = async (e) => {
+//     e.preventDefault();
 
-    try {
-      const { user, error } = await supabase.auth.signUp({
-        email: registerEmail,
-        password: registerPassword,
-      });
+//     try {
+//       const { user, error } = await supabase.auth.signUp({
+//         email: registerEmail,
+//         password: registerPassword,
+//       });
 
-      if (error) {
-        setFormError('An error occurred while registering.');
-      } else {
-        setFormError(null);
-        console.log(user);
-      }
-    } catch (error) {
-      console.log(error);
-      setFormError('An error occurred while registering.');
-    }
-  };
+//       if (error) {
+//         setFormError('An error occurred while registering.');
+//       } else {
+//         setFormError(null);
+//         console.log(user);
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       setFormError('An error occurred while registering.');
+//     }
+//   };
 
   const sendMessage = async () => {
     try {
@@ -130,26 +130,26 @@ export default function UserPortal() {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>
-      </FormWrapper>
-      <p>Don't have an account yet? Register below.</p>
-      <Button onClick={() => setFormError(null)}>Register</Button>
-      {formError && <ErrorText>{formError}</ErrorText>}
-      {formError !== null && (
-        <FormWrapper onSubmit={handleRegister}>
-          <Input
-            type="email"
-            placeholder="Email"
-            value={registerEmail}
-            onChange={(e) => setRegisterEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={registerPassword}
-            onChange={(e) => setRegisterPassword(e.target.value)}
-          />
-          <Button  type="submit">Register</Button>
-        </FormWrapper>
+//       </FormWrapper>
+//       <p>Don't have an account yet? Register below.</p>
+//       <Button onClick={() => setFormError(null)}>Register</Button>
+//       {formError && <ErrorText>{formError}</ErrorText>}
+//       {formError !== null && (
+//         <FormWrapper onSubmit={handleRegister}>
+//           <Input
+//             type="email"
+//             placeholder="Email"
+//             value={registerEmail}
+//             onChange={(e) => setRegisterEmail(e.target.value)}
+//           />
+//           <Input
+//             type="password"
+//             placeholder="Password"
+//             value={registerPassword}
+//             onChange={(e) => setRegisterPassword(e.target.value)}
+//           />
+//           <Button  type="submit">Register</Button>
+//         </FormWrapper>
       )}
     </UserPortalWrapper>
   );
