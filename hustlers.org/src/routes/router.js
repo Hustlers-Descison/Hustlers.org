@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import Create from '../components/Create';
 import Home from '../components/Home';
 import Update from '../components/Update';
-import Admin from '../components/Admin';
+import Login from '../components/Login';
+import Register from '../components/Register';
 
 const AppBody =styled.div`
 display: flex;
@@ -32,7 +33,11 @@ export default createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<Admin />
+                element:<Login />
+            },
+            {
+                path: 'register',
+                element: <Register />
             },
             {
                 path: 'home',
