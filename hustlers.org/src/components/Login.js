@@ -40,7 +40,7 @@ const ErrorText = styled.p`
 export default function UserPortal() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  
+  const [formError, setFormError] = useState('')
   
   const handleLogin = async (e) => {
     e.preventDefault();
