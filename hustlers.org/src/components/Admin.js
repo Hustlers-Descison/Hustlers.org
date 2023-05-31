@@ -61,7 +61,7 @@ const ErrorText = styled.p`
       console.log(error);
       setFormError('An error occurred while sending the message.');
     }
-  };
+
 
   return;
 }
