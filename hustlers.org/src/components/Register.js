@@ -49,7 +49,7 @@ export default function RegisterData() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button onClick={register} type="submit">Register</button>
+        <button type="submit">Register</button>
         {formError && <p className="error">{formError}</p>}
       </form>
     </div>
