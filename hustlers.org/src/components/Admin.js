@@ -114,23 +114,23 @@ const ErrorText = styled.p`
   };
 
   return (
-    <UserPortalWrapper>
-      <h2>User Portal</h2>
-      <FormWrapper onSubmit={handleLogin}>
-        <Input
-          type="email"
-          placeholder="Email"
-          value={loginEmail}
-          onChange={(e) => setLoginEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <Button type="submit">Login</Button>
-      </FormWrapper>
+//     <UserPortalWrapper>
+//       <h2>User Portal</h2>
+//       <FormWrapper onSubmit={handleLogin}>
+//         <Input
+//           type="email"
+//           placeholder="Email"
+//           value={loginEmail}
+//           onChange={(e) => setLoginEmail(e.target.value)}
+//         />
+//         <Input
+//           type="password"
+//           placeholder="Password"
+//           value={loginPassword}
+//           onChange={(e) => setLoginPassword(e.target.value)}
+//         />
+//         <Button type="submit">Login</Button>
+//       </FormWrapper>
 //       <p>Don't have an account yet? Register below.</p>
 //       <Button onClick={() => setFormError(null)}>Register</Button>
 //       {formError && <ErrorText>{formError}</ErrorText>}
@@ -150,7 +150,7 @@ const ErrorText = styled.p`
 //           />
 //           <Button  type="submit">Register</Button>
 //         </FormWrapper>
-      )}
-    </UserPortalWrapper>
+//       )}
+//     </UserPortalWrapper>
   );
 }
