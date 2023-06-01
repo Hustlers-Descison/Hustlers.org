@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet , Route , Routes } from 'react-router-dom';
 import Directory from '../components/Directory';
 import styled from 'styled-components';
 import Chat from '../components/Chat';
@@ -25,6 +25,8 @@ function Layout(){
         </>
     )
 }
+
+
 export default createBrowserRouter([
     {
         path: '/',
