@@ -44,17 +44,15 @@ export default function Directory(){
         <>
         <Container>
         <NavBar>
-            <NavLink to={'/'}>
-            <span>Admin</span>
+            
+            <NavLink to={'/'} className={ActiveLink}>  
+                <span>Home</span>
             </NavLink>
             <NavLink to={'home'} className={ActiveLink}>
                 <span>Chat Log</span>
             </NavLink>
-            <NavLink to={'create'}>
+            <NavLink to={'chat'}>
                 <span>Chat</span>
-            </NavLink>
-            <NavLink to={'update'}>
-                <span>Update</span>
             </NavLink>
         </NavBar>
         </Container>

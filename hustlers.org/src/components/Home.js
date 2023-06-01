@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import supabase  from '../db/supabaseClient';
 // import styled from 'styled-components';
-import SmoothieCard from './SmoothieCard';
+
 
 export default function Home(){
     const [fetchError, setFetchError] = useState(null);
@@ -50,12 +50,7 @@ export default function Home(){
                     {orderBy}
                 </div>
                 {/*  */}
-                <div className="smoothie-grid">
-                {smoothies.map(smoothie => (
-                    // ui view
-                    <SmoothieCard key={smoothie.id} smoothie={smoothie} onDelete={handleDelete} />
-                ))}
-                </div>
+                
             </div>
         )}
      </div>

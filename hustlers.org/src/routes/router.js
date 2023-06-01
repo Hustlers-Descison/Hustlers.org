@@ -2,10 +2,10 @@ import React from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Directory from '../components/Directory';
 import styled from 'styled-components';
-import Create from '../components/Create';
+import Chat from '../components/Chat';
 import Home from '../components/Home';
-import Update from '../components/Update';
-import Admin from '../components/Admin';
+import Login from '../components/loginpage';
+
 
 const AppBody =styled.div`
 display: flex;
@@ -17,7 +17,7 @@ function Layout(){
         <>
         <Directory/>
         <AppBody>
-            <React.Suspense fallback={<Admin active fullscreen={true} />}>
+            <React.Suspense fallback={<Login active fullscreen={true} />}>
                 <Outlet />
             </React.Suspense>
 
@@ -32,20 +32,17 @@ export default createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<Admin />
+                element:<Home />
             },
             {
-                path: 'home',
-                element: <Home />
+                path: 'Login',
+                element: <Login />
             },
             {
                 path: 'create',
-                element: <Create />
+                element: <Chat />
             },
-            {
-                path: '/:id',
-                element: <Update />
-            }
+            
         ]
     }
 ])

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../db/supabaseClient';
+import { Auth } from "@supabase/auth-ui-react";
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -45,10 +46,22 @@ const ErrorText = styled.p`
   color: red;
 `;
 
-export default function Create() {
+export default function Chat() {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [user, setUser] = useState({}); // [1
   const [formError, setFormError] = useState(null);
+
+  useEffect(() => {
+    async function getUserData() {
+      await supabase.auth.getUser().then((value) => {
+        if(value.data?.user) {
+          setUser(value.data.user);
+        }
+      });
+    }
+    getUserData();
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
