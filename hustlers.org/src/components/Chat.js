@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../db/supabaseClient';
 import { Auth } from "@supabase/auth-ui-react";
+import Login from './loginpage';
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -47,7 +48,6 @@ const ErrorText = styled.p`
 `;
 
 export default function Chat() {
-  const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [user, setUser] = useState({}); // [1
   const [formError, setFormError] = useState(null);
@@ -61,7 +61,7 @@ export default function Chat() {
       });
     }
     getUserData();
-  }, [user]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,6 +96,7 @@ export default function Chat() {
     }
   };
 
+
   return (
     <>
       <nav>
@@ -116,6 +117,7 @@ export default function Chat() {
             {formError && <ErrorText className="error">{formError}</ErrorText>}
           </form>
         </ChatBox>
+        
       </BodyWrapper>
     </>
   );

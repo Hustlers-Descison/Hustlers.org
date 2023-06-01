@@ -35,25 +35,19 @@ a: hover{ color: #FFF; text-decoration: none;}
 
 export default function Directory(){
     
-        function ActiveLink({isActive}){
-            const linkMatch = useMatch('/');
-            return isActive || linkMatch ? 'active' :undefined;
-        }
-
     return(
         <>
         <Container>
         <NavBar>
             
-            <NavLink to={'/'} className={ActiveLink}>  
+            <NavLink to={'/home'} >  
                 <span>Home</span>
             </NavLink>
-            <NavLink to={'home'} className={ActiveLink}>
-                <span>Chat Log</span>
-            </NavLink>
-            <NavLink to={'chat'}>
+            <NavLink to={'/chat'}>
                 <span>Chat</span>
             </NavLink>
+            
+
         </NavBar>
         </Container>
         </>

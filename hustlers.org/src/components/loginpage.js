@@ -7,16 +7,14 @@ export default function Login() {
     const navigate = useNavigate();
 
     supabase.auth.onAuthStateChange(async (event) => {
-        if (event !== "SIGNED_OUT") {
+        if (event !== "SIGNED_IN") {
+            console.log("User is signed in");
             navigate("/");
         } else {
-            navigate("/Chat");
+            console.log("User is signed out");
+            navigate("/Login");
         }
     })
-
-    async function signOut() {
-        const { error } = await supabase.auth.signOut();
-    }
 
     return (
         <div className="App">

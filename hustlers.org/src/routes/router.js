@@ -31,15 +31,15 @@ export default createBrowserRouter([
         element:<Layout />,
         children: [
             {
-                index: true,
-                element:<Home />
+                path: 'login',
+                element:<Login />
             },
             {
-                path: 'Login',
-                element: <Login />
+                path: 'home',
+                element: <Home />
             },
             {
-                path: 'create',
+                path: 'chat',
                 element: <Chat />
             },
             
