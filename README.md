@@ -1,3 +1,5 @@
+##  must intall supabase and create env file to run locally
+##  supabase database values must be configured the same --- https://supabase.com/ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
