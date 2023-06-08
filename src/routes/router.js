@@ -41,7 +41,7 @@ export default createBrowserRouter([
                 element:<Login />
             },
             {
-                path: 'home',
+                path: '/:id',
                 element: <Home />
             },
             {

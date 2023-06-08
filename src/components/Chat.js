@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 import supabase from '../db/supabaseClient';
 
 const FormContainer = styled.div`
-background-color: #16a085;
+background-color: #fff;
 height: 100vh;
 width: 100vw;
 display:flex;
@@ -44,6 +45,9 @@ border-radius: 20px;
 
 const ChatLog = styled.div`
   /* Styles for chat log */
+  position: relative;
+  margin-top:70%;
+  right: 50%;
 `;
 
 const MessageInput = styled.textarea`
@@ -55,16 +59,21 @@ const MessageInput = styled.textarea`
   position: fixed;
   left: 20%;
   width: 30%;
-  border: 1px solid gray;
+  border: 1px solid #ff6b6b;
   border-radius: 3px;
   padding: 20px;
   outline: none;
+  box-shadow: 0 5px 20px;
 `;
 
 const SendButton = styled.button`
   /* Styles for send button */
+  background-color: #ff6b6b;
+  position: relative;
+  right: auto;
+  top: 10px;
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  margin-right: 10px;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -73,84 +82,58 @@ const SendButton = styled.button`
 
 const ErrorText = styled.p`
   /* Styles for error text */
-  color: red;
+  color: #ff6b6b;
 `;
+export default function Chat(){
+    const navigate = useNavigate('');
+    const [message, setMessage] = useState('');
+    const [formError, setFormError] = useState(null);
 
-export default function Chat() {
-  const [message, setMessage] = useState('');
-  const [user, setUser] = useState({}); // [1
-  const [formError, setFormError] = useState(null);
-
-  useEffect(() => {
-    async function getUserData() {
-      await supabase.auth.getUser().then((value) => {
-        if(value.data?.user) {
-          setUser(value.data.user);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!message){
+            setFormError('please enter a message');
+            return
         }
-      });
-    }
-    getUserData();
-  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!message) {
-      setFormError('Please enter a message.');
-      return;
-    }
-
-    try {
-      const user = supabase.auth.user();
-      if (!user) {
-        setFormError('You must be logged in to send a message.');
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from('messages')
-        .insert([{ userId: user.id, message }])
-        .select();
-
-      if (error) {
+    const { data, error} = await supabase
+        .from('chatMessage')
+        .insert([{message}])
+        .select()
+    if (error){
         console.log(error);
-        setFormError('An error occurred while sending the message.');
-      } else {
+        setFormError('please enter a message');
+    }
+    if (data){
         console.log(data);
         setFormError(null);
-        setMessage('');
-      }
-    } catch (error) {
-      console.log(error);
-      setFormError('An error occurred while sending the message.');
+        navigate('/home');
     }
-  };
 
-
-  return (
-    <>
-      <nav>
-        {/* Navbar contents: Admin, Chat Log, Chat, Update */}
-      </nav>
-      <FormContainer>
-      
-        <ChatLog>
-          {/* Display messages from multiple users */}
-        </ChatLog>
-        <ChatBox>
+    }
+    return(
+     <>
+     <FormContainer>
+      <div className='page create'>
           <form onSubmit={handleSubmit}>
-            <MessageInput
-              placeholder="Enter your message (up to 3000 words)"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <SendButton type="submit">Send</SendButton>
-            {formError && <ErrorText className="error">{formError}</ErrorText>}
+          <ChatBox>
+          <MessageInput
+          name=''
+          id='message'
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          cols={30}
+          rows={10}
+          placeholder='Enter your message (up to 3000 words)'
+          />
+          </ChatBox>
+          <SendButton>post me</SendButton>
+          <ChatLog>
+          {formError && <ErrorText className="error">{formError}</ErrorText>}
+          </ChatLog>
           </form>
-        </ChatBox>
-        
-    
-      </FormContainer>
-      
-    </>
-  );
+      </div>
+     </FormContainer>
+     </>
+    )
 }

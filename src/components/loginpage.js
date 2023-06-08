@@ -14,26 +14,26 @@ justify-content: center;
 `
 
 export default function Login() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    supabase.auth.onAuthStateChange(async (event) => {
-        if (event === "SIGNED_IN") {
-            console.log("User is signed in");
-            navigate("/login");
-        }
-    })
+    // supabase.auth.onAuthStateChange(async (event) => {
+    //     if (event === "SIGNED_IN") {
+    //         console.log("User is signed in");
+    //         navigate("/login");
+    //     }
+    // })
 
-    return (
-        <FormContainer>
-            <div className="App">
-            <header className="App-header">
-                <Auth 
-                    supabaseClient={supabase}
-                    appearance={{ theme: ThemeSupa }}
-                    theme="dark"
-                />
-            </header>
-            </div>
-        </FormContainer>
-    );
+    // return (
+    //     <FormContainer>
+    //         <div className="App">
+    //         <header className="App-header">
+    //             <Auth 
+    //                 supabaseClient={supabase}
+    //                 appearance={{ theme: ThemeSupa }}
+    //                 theme="dark"
+    //             />
+    //         </header>
+    //         </div>
+    //     </FormContainer>
+    // );
 }

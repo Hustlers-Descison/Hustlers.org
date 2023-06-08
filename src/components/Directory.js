@@ -10,7 +10,7 @@ z-index:100;
 align-items:center;
 justify-content: space-between;
 padding:10px 0;
-background-color: #fff;
+background-color: #ecf0f1;
 color:#bdc3c7;
 margin-bottom:40px;
 `
@@ -44,13 +44,13 @@ export default function Directory(){
         <>
         <Container>
         <NavBar>
-            <span class="logo">Hustlers.org</span>
+            <span className="logo">Hustlers.org</span>
             <NavLink to={'/login'} >  
                 <span>Login</span>
             </NavLink>
             
             <NavLink to={'/home'} >  
-                <span>Home</span>
+                <span>Chat Log</span>
             </NavLink>
             <NavLink to={'/chat'}>
                 <span>Chat</span>
